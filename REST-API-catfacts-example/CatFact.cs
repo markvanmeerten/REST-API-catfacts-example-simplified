@@ -8,21 +8,25 @@ namespace REST_API_catfacts_example
         [property: JsonPropertyName("length")] int characterCount
     )
     {
-        public static async Task<CatFact> RandomCatFact(HttpClient client)
+
+    }
+
+    public class CatFactAPI()
+    {
+        public static CatFact RandomCatFact(HttpClient client)
         {
-            Stream stream = await client.GetStreamAsync("https://catfact.ninja/fact");
+            HttpResponseMessage response = client.GetAsync("https://catfact.ninja/fact").Result;
+            response.EnsureSuccessStatusCode();
 
-            CatFact? fact = await JsonSerializer.DeserializeAsync<CatFact>(stream);
+            string responseBody = response.Content.ReadAsStringAsync().Result;
+            CatFact? catFact = JsonSerializer.Deserialize<CatFact>(responseBody);
 
-            stream.Dispose(); // Of gebruik using
-
-            if (fact == null)
+            if(catFact == null)
             {
-                // Is er geen internet? Of er ging iets fout tijdens het deserialiseren van de JSON?
                 throw new Exception();
             }
 
-            return fact;
+            return catFact;
         }
     }
 }
