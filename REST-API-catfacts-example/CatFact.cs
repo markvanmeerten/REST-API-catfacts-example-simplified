@@ -16,7 +16,7 @@ namespace REST_API_catfacts_example
         public CatFact[] data { get; set; }
     }
 
-    public class CatFactAPI()
+    public class CatFactAPI
     {
         public static CatFact RandomCatFact(HttpClient client)
         {
