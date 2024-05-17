@@ -55,14 +55,11 @@ namespace REST_API_catfacts_example
                 
             """;
 
-            List<Familielid> familie = JsonSerializer.Deserialize<List<Familielid>>(json);
+            List<Familielid>? familie = JsonSerializer.Deserialize<List<Familielid>>(json);
 
-            if (familie != null)
+            foreach (Familielid lid in familie)
             {
-                foreach (Familielid lid in familie)
-                {
-                    Console.WriteLine(lid.naam);
-                }
+                Console.WriteLine(lid.naam);
             }
 
             return json;
