@@ -10,14 +10,60 @@ namespace REST_API_catfacts_example
 {
     public class JSONLoader
     {
-
-        public static string getJSON(string filename)
+        public class Familielid
         {
-            string json = "{\"fact\":\"A cat can\\u2019t climb head first down a tree because every claw on a cat\\u2019s paw points the same way. To get down from a tree, a cat must back down.\",\"length\":142}";
+            public string naam { get; set; }
+            public int leeftijd { get; set; }
+            public string geboorteplaats { get; set; }
+            public string rol { get; set; }
+        }
 
-            CatFact? data = JsonSerializer.Deserialize<CatFact>(json);
+        public class Familie
+        {
+            public Familielid[] familieleden { get; set; }
+        }
 
-            Console.WriteLine("!" + data.fact + "!");
+        public static string getJSON()
+        {
+            string json = """
+                 [
+                    {
+                        "naam" : "Tim",
+                        "Leeftijd" : 18,
+                        "geboorteplaats" : "Elst Utrecht",
+                        "rol" : "zoon"
+                    },
+                    {
+                        "naam" : "Jolien",
+                        "leeftijd" : 20,
+                        "geboorteplaats" : "Elst Utrecht",
+                        "rol" : "dochter"
+                    },
+                    {
+                        "naam" : "Johan",
+                        "leeftijd" : 52,
+                        "geboorteplaats" : "Ederveen",
+                        "rol" : "vader"
+                    },
+                    {
+                        "naam" : "Helma",
+                        "leeftijd" : 54,
+                        "geboorteplaats" : "Ede",
+                        "rol" : "Moeder"
+                    }
+                ]
+                
+            """;
+
+            List<Familielid> familie = JsonSerializer.Deserialize<List<Familielid>>(json);
+
+            if (familie != null)
+            {
+                foreach (Familielid lid in familie)
+                {
+                    Console.WriteLine(lid.naam);
+                }
+            }
 
             return json;
         }
