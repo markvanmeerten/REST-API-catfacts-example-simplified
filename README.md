@@ -4,16 +4,17 @@ Deze applicatie is gebaseerd op de [Tutorial: Make HTTP requests in a .NET conso
 
 ### Leerdoelen:
 - Oefenen met het ophalen van data via een publiek beschikbare API
-- Oefenen met het omgaan met asynchrone code (waarvan je niet weet wanneer de data beschikbaar is)
 - Tekst in JSON formaat omzetten naar een bruikbare data structure
 
 ### Opdracht
-De voorbeeldcode gebruikt een [gratis API](https://catfact.ninja/#/) om een enkel feitje op te halen. Kun je de code zo aanpassen dat deze meerdere feitjes tegelijkertijd ophaalt? Gebruik daarvoor het endpoint: ```/facts```.
+De voorbeeldcode gebruikt een [gratis API](https://catfact.ninja/#/) om een lijst van feitjes op te halen. 
+Er is ook een functie die een enkel feitje ophaalt.
+
+Kies zelf de opdracht die het beste bij je past:
+- Gebruik je eigen ontworpen JSON structuur (vorige les) 
+- Kies een andere gratis API en pas het voorbeeld aan
 
 ### Nieuw?
-- [Asynchronous programming](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/)
 - [What are API Headers?](https://apipheny.io/api-headers/)
 - [Try/Catch/Finally block](https://www.w3schools.com/cs/cs_exceptions.php)
 - [Nullable types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types)
-- [Record](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records)
-- [Disposing a Stream with the "using" keyword](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using)
