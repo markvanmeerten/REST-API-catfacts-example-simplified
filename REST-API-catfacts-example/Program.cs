@@ -6,16 +6,15 @@ HttpClient client = new HttpClient();
 client.DefaultRequestHeaders.Accept.Clear();
 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-try
-{
-    CatFact fact = CatFactAPI.RandomCatFact(client);
-
-    Console.WriteLine(fact.text);
-} catch(Exception e)
-{
-    Console.WriteLine("ERROR ERROR!");
-    Console.WriteLine(e);
+try {
+    var facts = CatFactAPI.RandomCatFacts(client);
+    
+    foreach (CatFact fact in facts.data)
+    {
+        Console.WriteLine(fact.fact);
+    }
+} catch (Exception e) {
+    Console.WriteLine("Error: " + e.Message);
 }
-
 
 Console.ReadKey();
