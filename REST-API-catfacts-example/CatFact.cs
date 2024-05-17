@@ -25,7 +25,7 @@ namespace REST_API_catfacts_example
 
             // Gooi een Exception als de server een ongeldige statuscode teruggeeft (bijvoorbeeld als de server down is)
             response.EnsureSuccessStatusCode();
-
+              
             // Vraag de API om de JSON string
             string responseBody = response.Content.ReadAsStringAsync().Result;
 
