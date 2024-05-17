@@ -12,56 +12,59 @@ namespace REST_API_catfacts_example
     }
 
     public class CatFacts
-    {
-        public int total { get; set; }
-
-        public List<CatFact> data { get; set; }
+    { 
+        public CatFact[] data { get; set; }
     }
 
     public class CatFactAPI()
     {
         public static CatFact RandomCatFact(HttpClient client)
         {
-            // Vraag via HTTP data op
+            // Gebruik HTTP om verbinding te maken met de API
             HttpResponseMessage response = client.GetAsync("https://catfact.ninja/fact").Result;
 
-            // Gooi een Exception als de server een ongeldige statuscode teruggeeft
+            // Gooi een Exception als de server een ongeldige statuscode teruggeeft (bijvoorbeeld als de server down is)
             response.EnsureSuccessStatusCode();
 
-            // De JSON als pure tekst
+            // Vraag de API om de JSON string
             string responseBody = response.Content.ReadAsStringAsync().Result;
 
-            // De variabele `catFact` is van het type `CatFact`, maar het vraagteken betekent dat null ook een geldige waarde is
+            // Zet de JSON string om naar data (van het type CatFact)
+            // Het vraagteken betekent dat null ook een geldige waarde is
             CatFact? catFact = JsonSerializer.Deserialize<CatFact>(responseBody);
 
+            // Als `catFact` null is dan is het niet gelukt de JSON tekst te converteren naar data
             if (catFact == null)
             {
                 throw new Exception("Invalid JSON");
             }
 
-            // Geef het object terug
+            // Geef het resultaat terug
             return catFact;
         }
 
         public static CatFacts RandomCatFacts(HttpClient client)
         {
-            // Vraag via HTTP data op
+            // Gebruik HTTP om verbinding te maken met de API
             HttpResponseMessage response = client.GetAsync("https://catfact.ninja/facts").Result;
 
-            // Gooi een Exception als de server een ongeldige statuscode teruggeeft
+            // Gooi een Exception als de server een ongeldige statuscode teruggeeft (bijvoorbeeld als de server down is)
             response.EnsureSuccessStatusCode();
 
-            // De JSON als pure tekst
+            // Vraag de API om de JSON string
             string responseBody = response.Content.ReadAsStringAsync().Result;
 
-            // De variabele `catFacts` is van het type `CatFacts`, maar het vraagteken betekent dat null ook een geldige waarde 
+            // Zet de JSON string om naar data (van het type CatFact)
+            // Het vraagteken betekent dat null ook een geldige waarde is
             CatFacts? catFacts = JsonSerializer.Deserialize<CatFacts>(responseBody);
 
+            // Als `catFact` null is dan is het niet gelukt de JSON tekst te converteren naar data
             if (catFacts == null)
             {
                 throw new Exception("Invalid JSON");
             }
 
+            // Geef het resultaat terug
             return catFacts;
         }
     }
