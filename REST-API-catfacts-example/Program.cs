@@ -11,7 +11,7 @@ try {
     
     foreach (CatFact fact in facts.data)
     {
-        Console.WriteLine(fact.fact);
+        Console.WriteLine("Did you know?\r\n" + fact.fact + "\r\n");
     }
 } catch (Exception e) {
     Console.WriteLine("Error: " + e.Message);
